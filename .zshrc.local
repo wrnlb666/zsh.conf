@@ -66,6 +66,6 @@ mkj() {
 }
 
 # clear cache
-clear_cache() {
+uncache() {
     sudo sh -c "echo 3 > /proc/sys/vm/drop_caches"
 }
