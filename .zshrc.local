@@ -1,0 +1,71 @@
+# keys
+if [[ -e ~/.keyrc ]]; then
+    source ~/.keyrc
+fi
+
+# ls
+alias ll="ls -lha"
+
+# man page
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+export MANROFFOPT="-c"
+
+# fzf
+if [[ -e /usr/share/fzf/completion.zsh ]]; then
+    source /usr/share/fzf/completion.zsh
+fi
+if [[ -e /usr/share/fzf/key-bindings.zsh ]]; then
+    source /usr/share/fzf/key-bindings.zsh
+fi
+source <(fzf --zsh)
+alias fzf="fzf --tmux center"
+export FZF_DEFAULT_COMMAND="fd --type f"
+export FZF_DEFAULT_OPTS='--preview "bat --color=always{}"'
+
+# neovim
+export EDITOR=nvim
+
+# zoxide
+source <(zoxide init zsh --cmd j)
+alias cd="j"
+
+# go
+export GOROOT=$(go env GOROOT)
+export GOPATH=$(go env GOPATH)
+export PATH=$PATH:$GOROOT/bin
+alias gop="GOPROXY=https://goproxy.cn"
+
+# superfile
+spf() {
+    os=$(uname -s)
+    # Linux
+    if [[ "$os" == "Linux" ]]; then
+        export SPF_LAST_DIR="${XDG_STATE_HOME:-$HOME/.local/state}/superfile/lastdir"
+    fi
+    # macOS
+    if [[ "$os" == "Darwin" ]]; then
+        export SPF_LAST_DIR="$HOME/Library/Application Support/superfile/lastdir"
+    fi
+    command spf "$@"
+    [ ! -f "$SPF_LAST_DIR" ] || {
+        . "$SPF_LAST_DIR"
+        rm -f -- "$SPF_LAST_DIR" > /dev/null
+    }
+}
+
+# bit
+alias bit="bitcomplete"
+
+# rust
+export PATH=$PATH:~/.cargo/bin
+
+# mkj
+mkj() {
+    mkdir -p $1
+    j $1
+}
+
+# clear cache
+clear_cache() {
+    sudo sh -c "echo 3 > /proc/sys/vm/drop_caches"
+}
