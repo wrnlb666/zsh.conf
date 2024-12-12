@@ -20,7 +20,7 @@ fi
 source <(fzf --zsh)
 alias fzf="fzf --tmux center"
 export FZF_DEFAULT_COMMAND="fd --type f"
-export FZF_DEFAULT_OPTS='--preview "bat --color=always{}"'
+export FZF_DEFAULT_OPTS='--preview "bat --color=always {}"'
 
 # neovim
 export EDITOR=nvim
