@@ -4,14 +4,19 @@ if [[ -e ~/.keyrc ]]; then
 fi
 
 # ls
+if [[ -x "$(command -v lsd)" ]]; then
+    alias ls="lsd"
+fi
 alias ll="ls -lha"
 
 # flatpak
 export GTK_THEME=Breeze:dark
 
 # man page
-export MANPAGER="sh -c 'col -bx | bat -l man -p'"
-export MANROFFOPT="-c"
+if [[ -x "$(command -v bat)" ]]; then
+    export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+    export MANROFFOPT="-c"
+fi
 
 # fzf
 if [[ -e /usr/share/fzf/completion.zsh ]]; then
@@ -20,23 +25,37 @@ fi
 if [[ -e /usr/share/fzf/key-bindings.zsh ]]; then
     source /usr/share/fzf/key-bindings.zsh
 fi
-source <(fzf --zsh)
-alias fzf="fzf --tmux center"
-export FZF_DEFAULT_COMMAND="fd --type f"
-export FZF_DEFAULT_OPTS='--preview "bat --color=always {}"'
+if [[ -x "$(command -v fzf)" ]]; then
+    source <(fzf --zsh)
+    if [[ -x "$(command -v tmux)" ]]; then
+        alias fzf="fzf --tmux center"
+    fi
+    if [[ -x "$(command -v fd)" ]]; then
+        export FZF_DEFAULT_COMMAND="fd --type f"
+    fi
+    if [[ -x "$(command -v bat)" ]]; then
+        export FZF_DEFAULT_OPTS='--preview "bat --color=always {}"'
+    fi
+fi
 
 # neovim
-export EDITOR=nvim
+if [[ -x "$(command -v nvim)" ]]; then
+    export EDITOR=nvim
+fi
 
 # zoxide
-source <(zoxide init zsh --cmd j)
-alias cd="j"
+if [[ -x "$(command -v zoxide)" ]]; then
+    source <(zoxide init zsh --cmd j)
+    alias cd="j"
+fi
 
 # go
-export GOROOT=$(go env GOROOT)
-export GOPATH=$(go env GOPATH)
-export PATH=$PATH:$GOROOT/bin
-alias gop="GOPROXY=https://goproxy.cn"
+if [[ -x "$(command -v go)" ]]; then
+    export GOROOT=$(go env GOROOT)
+    export GOPATH=$(go env GOPATH)
+    export PATH=$PATH:$GOROOT/bin
+    alias gop="GOPROXY=https://goproxy.cn"
+fi
 
 # superfile
 spf() {
@@ -65,7 +84,7 @@ export PATH=$PATH:~/.cargo/bin
 # mkj
 mkj() {
     mkdir -p $1
-    j $1
+    cd $1
 }
 
 # clear cache
