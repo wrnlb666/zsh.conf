@@ -9,9 +9,6 @@ if [[ -x "$(command -v lsd)" ]]; then
 fi
 alias ll="ls -lha"
 
-# flatpak
-export GTK_THEME=Breeze:dark
-
 # man page
 if [[ -x "$(command -v bat)" ]]; then
     export MANPAGER="sh -c 'col -bx | bat -l man -p'"
