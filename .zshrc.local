@@ -1,5 +1,5 @@
 # keys
-if [[ -e ~/.keyrc ]]; then
+if [[ -r ~/.keyrc ]]; then
     source ~/.keyrc
 fi
 
@@ -16,10 +16,10 @@ if [[ -x "$(command -v bat)" ]]; then
 fi
 
 # fzf
-if [[ -e /usr/share/fzf/completion.zsh ]]; then
+if [[ -r /usr/share/fzf/completion.zsh ]]; then
     source /usr/share/fzf/completion.zsh
 fi
-if [[ -e /usr/share/fzf/key-bindings.zsh ]]; then
+if [[ -r /usr/share/fzf/key-bindings.zsh ]]; then
     source /usr/share/fzf/key-bindings.zsh
 fi
 if [[ -x "$(command -v fzf)" ]]; then
