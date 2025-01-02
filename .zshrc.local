@@ -78,6 +78,11 @@ alias bit="bitcomplete"
 # rust
 export PATH=$PATH:~/.cargo/bin
 
+# gdu
+if [[ -x "$(command -v gdu-go)" ]]; then
+    alias gdu="gdu-go"
+fi
+
 # mkj
 mkj() {
     mkdir -p $1
