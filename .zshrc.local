@@ -83,6 +83,11 @@ if [[ -x "$(command -v gdu-go)" ]]; then
     alias gdu="gdu-go"
 fi
 
+# vscode
+if [[ ! -x $(command -v code) ]] && flatpak info com.visualstudio.code &> /dev/null; then
+    alias code="flatpak run com.visualstudio.code"
+fi
+
 # mkj
 mkj() {
     mkdir -p $1
