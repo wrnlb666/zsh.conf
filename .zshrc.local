@@ -98,3 +98,9 @@ mkj() {
 uncache() {
     sudo sh -c "echo 3 > /proc/sys/vm/drop_caches"
 }
+
+# zsh vi mode
+bindkey -M viins '^?' backward-delete-char
+bindkey -M viins 'jj' vi-cmd-mode
+bindkey -M viins 'jk' vi-cmd-mode
+bindkey -v
