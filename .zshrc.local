@@ -72,9 +72,6 @@ spf() {
     }
 }
 
-# bit
-alias bit="bitcomplete"
-
 # rust
 export PATH=$PATH:~/.cargo/bin
 
