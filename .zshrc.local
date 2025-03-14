@@ -101,6 +101,9 @@ gp() {
             git push
         fi
     done
+    if [[ "$@" -gt 0 ]]; then
+        git checkout "$1"
+    fi
 }
 
 # clear cache
