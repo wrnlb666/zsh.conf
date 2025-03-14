@@ -94,6 +94,15 @@ mkj() {
     cd "$dir" || exit 1
 }
 
+# git push
+gp() {
+    for b in $@; do
+        if git checkout "$b"; then
+            git push
+        fi
+    done
+}
+
 # clear cache
 uncache() {
     sudo sh -c "echo 3 > /proc/sys/vm/drop_caches"
