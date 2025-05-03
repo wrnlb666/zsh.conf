@@ -48,6 +48,15 @@ if [[ -x "$(command -v nvim)" ]]; then
     export EDITOR=nvim
 fi
 
+# tmux
+tmux() {
+    if [[ $# -eq 0 ]]; then
+        command tmux new -s wrnlb
+    else
+        command tmux "$@"
+    fi
+}
+
 # zoxide
 if [[ -x "$(command -v zoxide)" ]]; then
     source <(zoxide init zsh --cmd j)
