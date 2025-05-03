@@ -6,7 +6,7 @@ fi
 # starship
 if [[ -x $(command -v starship) ]]; then
     if ! [[ -r ~/.config/starship.toml ]]; then
-        starship preset catppuccin-powerline -o ~/.config/starship.toml
+        starship preset tokyo-night -o ~/.config/starship.toml
     fi
     source <(starship init zsh)
 fi
@@ -100,18 +100,6 @@ mkj() {
     local dir="$1"
     mkdir -p "$dir"
     cd "$dir" || exit 1
-}
-
-# git push
-gp() {
-    for b in $@; do
-        if git checkout "$b"; then
-            git push
-        fi
-    done
-    if [[ "$@" > 0 ]]; then
-        git checkout "$1"
-    fi
 }
 
 # clear cache
