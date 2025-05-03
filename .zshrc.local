@@ -3,6 +3,14 @@ if [[ -r ~/.keyrc ]]; then
     source ~/.keyrc
 fi
 
+# starship
+if [[ -x $(command -v starship) ]]; then
+    if ! [[ -r ~/.config/starship.toml ]]; then
+        starship preset catppuccin-powerline -o ~/.config/starship.toml
+    fi
+    source <(starship init zsh)
+fi
+
 # ls
 if [[ -x "$(command -v lsd)" ]]; then
     alias ls="lsd"
