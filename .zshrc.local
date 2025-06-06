@@ -17,6 +17,11 @@ if [[ -x "$(command -v lsd)" ]]; then
 fi
 alias ll="ls -lha"
 
+# lazygit
+if [[ -x "$(command -v lazygit)" ]]; then
+    alias lg="lazygit"
+fi
+
 # gomi
 if [[ -x "$(command -v gomi)" ]]; then
     alias rm="gomi"
