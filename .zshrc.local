@@ -24,17 +24,22 @@ fi
 
 # python
 venv() {
-    if [[ -d "venv" ]]; then
-        echo "Entering Virtual Environment..."
-        source venv/bin/activate
-    elif [[ -d ".venv" ]]; then
-        echo "Entering Virtual Environment..."
-        source .venv/bin/activate
-    elif [[ $# == 0 ]]; then
-        echo "Creating Virtual Environment 'venv'..."
-        python3 -m venv venv
+    if [[ $# == 0 ]]; then
+        local dir=$(pwd)
+        while [[ $dir != '/' ]]; do
+            for v in "venv" ".venv"; do
+                if [[ -d "$dir/$v" ]]; then
+                    echo "Entering Virtual Environment '$dir/$v'..."
+                    source "$dir/$v/bin/activate"
+                    return
+                fi
+            done
+            dir=$(dirname "$dir")
+        done
+        echo "Creating Virtual Environment './venv'..."
+        command python3 -m venv venv
     else
-        python3 -m venv $@
+        command python3 -m venv $@
     fi
 }
 
