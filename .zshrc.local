@@ -28,7 +28,7 @@ venv() {
         local dir=$(pwd)
         while [[ $dir != '/' ]]; do
             for v in "venv" ".venv"; do
-                if [[ -d "$dir/$v" ]]; then
+                if [[ -d "$dir/$v" && -f "$dir/$v/pyvenv.cfg" ]]; then
                     echo "Entering Virtual Environment '$dir/$v'..."
                     source "$dir/$v/bin/activate"
                     return
