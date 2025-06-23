@@ -126,7 +126,6 @@ fi
 if [[ ! -x $(command -v code) ]] && flatpak info com.visualstudio.code &> /dev/null; then
     alias code="flatpak run com.visualstudio.code"
 fi
-alias coj="code --enable-proposed-api ms-toolsai.jupyter"
 
 # mkj
 mkj() {
