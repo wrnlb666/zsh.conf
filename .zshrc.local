@@ -22,7 +22,7 @@ if [[ -x "$(command -v lazygit)" ]]; then
     alias lg="lazygit"
 fi
 
-# python
+# python venv
 venv() {
     if [[ $# == 0 ]]; then
         local dir=$(pwd)
@@ -42,6 +42,12 @@ venv() {
         command python3 -m venv $@
     fi
 }
+
+# python pyenv
+if [[ -x "$(command -v pyenv)" ]]; then
+    export PYENV_ROOT="$HOME/.pyenv"
+    eval "$(pyenv init -)"
+fi
 
 # gomi
 if [[ -x "$(command -v gomi)" ]]; then
