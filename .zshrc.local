@@ -44,10 +44,10 @@ venv() {
 }
 
 # python pyenv
-# if [[ -x "$(command -v pyenv)" ]]; then
-#     export PYENV_ROOT="$HOME/.pyenv"
-#     source <(pyenv init -)
-# fi
+if [[ -x "$(command -v pyenv)" ]]; then
+    export PYENV_ROOT="$HOME/.pyenv"
+    source <(pyenv init -)
+fi
 
 # gomi
 if [[ -x "$(command -v gomi)" ]]; then
