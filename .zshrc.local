@@ -1,3 +1,6 @@
+# make $PATH unique
+typeset -U PATH
+
 # keys
 if [[ -r ~/.keyrc ]]; then
     source ~/.keyrc
@@ -47,8 +50,17 @@ venv() {
 if [[ -x "$(command -v pyenv)" ]]; then
     export PYENV_ROOT="$HOME/.pyenv"
     # source <(pyenv init -)
-    export PATH="${PYENV_ROOT}/shims:${PATH}"
     export PYENV_SHELL=zsh
+    pyenv_set=1
+    for p in $(echo $PATH | tr ':' '\n'); do
+        if [[ $p == "${PYENV_ROOT}/shims" ]]; then
+            pyenv_set=0
+            break
+        fi
+    done
+    if [[ ! $pyenv_set ]]; then
+        export PATH="${PYENV_ROOT}/shims:${PATH}"
+    fi
 fi
 
 # gomi
