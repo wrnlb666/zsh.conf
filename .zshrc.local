@@ -46,7 +46,9 @@ venv() {
 # python pyenv
 if [[ -x "$(command -v pyenv)" ]]; then
     export PYENV_ROOT="$HOME/.pyenv"
-    source <(pyenv init -)
+    # source <(pyenv init -)
+    export PATH="${PYENV_ROOT}/shims:${PATH}"
+    export PYENV_SHELL=zsh
 fi
 
 # gomi
