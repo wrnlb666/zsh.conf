@@ -6,11 +6,11 @@ fpath=(~/.zsh/site-functions $fpath)
 _setup_plugins() {
     local dir
     for dir in ~/.zsh/plugins/* ; do
-        for file in "${dir}"/*.(sh|zsh); do
-            if [[ -f "$file" && -r "$file" ]]; then
+        for file in "${dir}"/*.(sh|zsh)(N) "${dir}"/.*.(sh|zsh)(N-.); do
+            if [[ -r "$file" ]]; then
                 source "$file"
             fi
-        done
+        done 2> /dev/null
     done
 }
 _setup_plugins
