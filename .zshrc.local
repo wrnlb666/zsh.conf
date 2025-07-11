@@ -52,9 +52,16 @@ if [[ -x "$(command -v uv)" ]]; then
 fi
 
 # python conda
-if [[ -d "${HOME}/conda" ]]; then
-    source ~/conda/etc/profile.d/conda.sh
-fi
+_setup_conda() {
+    local dir
+    for dir in "conda" "miniforge3" "anaconda" "Conda" "Anaconda"; do
+        if [[ -r "${HOME}/${dir}/etc/profile.d/conda.sh" ]]; then
+            source "${HOME}/${dir}/etc/profile.d/conda.sh"
+            break
+        fi
+    done
+}
+_setup_conda
 
 # gomi
 if [[ -x "$(command -v gomi)" ]]; then
