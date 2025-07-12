@@ -69,7 +69,7 @@ fi
 # python conda
 _setup_conda() {
     local dir
-    for dir in "conda" "miniforge3" "anaconda" "Conda" "Anaconda"; do
+    for dir in "conda" "miniforge3" "miniconda" "miniconda3" "anaconda3" "Conda" "Anaconda"; do
         if [[ -r "${HOME}/${dir}/etc/profile.d/conda.sh" ]]; then
             source "${HOME}/${dir}/etc/profile.d/conda.sh"
             break
