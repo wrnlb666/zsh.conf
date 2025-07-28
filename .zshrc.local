@@ -145,7 +145,7 @@ spf() {
     command spf "$@"
     [ ! -f "$SPF_LAST_DIR" ] || {
         . "$SPF_LAST_DIR"
-        rm -f -- "$SPF_LAST_DIR" > /dev/null
+        command rm -f -- "$SPF_LAST_DIR" > /dev/null
     }
 }
 
