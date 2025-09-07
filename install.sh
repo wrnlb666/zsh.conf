@@ -2,7 +2,7 @@
 
 [ -f ~/.zshrc ] || touch ~/.zshrc
 
-ln -sf $(pwd)/.zshrc.local ~/
+ln -sf $(pwd)/zshrc.zsh ~/.zshrc.local
 
 echo "# my zsh config" >> ~/.zshrc
 echo "if [[ -r ~/.zshrc.local ]]; then" >> ~/.zshrc

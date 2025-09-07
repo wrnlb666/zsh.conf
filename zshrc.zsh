@@ -116,7 +116,7 @@ if [[ -x "$(command -v fzf)" ]]; then
         export FZF_DEFAULT_COMMAND="fd --type f"
     fi
     if [[ -x "$(command -v bat)" ]]; then
-        export FZF_DEFAULT_OPTS='--preview "bat --color=always {}"'
+        export FZF_DEFAULT_OPTS='--preview "[[ -f {} ]] && bat --color=always {}; [[ -d {} ]] && ls -lhA --color=always {}"'
     fi
 fi
 
