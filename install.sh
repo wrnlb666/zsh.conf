@@ -4,7 +4,9 @@
 
 ln -sf $(pwd)/zshrc.zsh ~/.zshrc.local
 
-echo "# my zsh config" >> ~/.zshrc
-echo "if [[ -r ~/.zshrc.local ]]; then" >> ~/.zshrc
-echo "    source ~/.zshrc.local" >> ~/.zshrc
-echo "fi" >> ~/.zshrc
+if ! grep -Fq '# my zsh config' ~/.zshrc; then
+    echo "# my zsh config" >> ~/.zshrc
+    echo "if [[ -r ~/.zshrc.local ]]; then" >> ~/.zshrc
+    echo "    source ~/.zshrc.local" >> ~/.zshrc
+    echo "fi" >> ~/.zshrc
+fi
