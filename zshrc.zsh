@@ -52,7 +52,7 @@ fi
 
 # lazydocker
 if [[ -x "$(command -v lazydocker)" ]]; then
-    alias ldk="lazydocker"
+    alias lzd="lazydocker"
 fi
 
 # distrobox
