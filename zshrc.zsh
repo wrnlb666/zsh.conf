@@ -1,24 +1,6 @@
 # make $PATH unique
 typeset -U PATH
 
-# My own plugin system
-fpath=(~/.zsh/site-functions $fpath)
-_setup_plugins() {
-    local dir
-    [[ -d ~/.zsh/plugins/ ]] || return
-    setopt NULL_GLOB
-    for dir in ~/.zsh/plugins/* ; do
-        for file in "${dir}"/*.(sh|zsh)(N) "${dir}"/.*.(sh|zsh)(N-.); do
-            if [[ -r "$file" ]]; then
-                source "$file"
-            fi
-        done 2> /dev/null
-    done
-    unsetopt NULL_GLOB
-}
-_setup_plugins
-autoload -U compinit && compinit
-
 # keys
 if [[ -r ~/.keyrc ]]; then
     source ~/.keyrc
