@@ -20,13 +20,6 @@ if [[ -x "$(command -v lsd)" ]]; then
 fi
 alias ll="ls -lha"
 
-# tre
-if [[ -x "$(command -v tre)" ]]; then
-    tre() {
-        command tre "$@" -e && source "/tmp/tre_aliases_$USER" 2>/dev/null
-    }
-fi
-
 # lazygit
 if [[ -x "$(command -v lazygit)" ]]; then
     alias lg="lazygit"
