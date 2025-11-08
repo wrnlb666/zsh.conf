@@ -134,6 +134,11 @@ if [[ -x "$(command -v go)" ]]; then
     alias gop="GOPROXY=https://goproxy.cn"
 fi
 
+# tuios
+if [[ -x "$(command -v tuios)" ]]; then
+    source <(tuios completion zsh)
+fi
+
 # superfile
 spf() {
     os=$(uname -s)
