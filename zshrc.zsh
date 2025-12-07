@@ -120,8 +120,8 @@ fi
 
 # zoxide
 if [[ -x "$(command -v zoxide)" ]]; then
-    source <(zoxide init zsh --cmd j)
-    alias cd="j"
+    source <(zoxide init zsh --cmd z)
+    alias cd="z"
 fi
 
 # go
