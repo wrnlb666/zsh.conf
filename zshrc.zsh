@@ -32,7 +32,9 @@ fi
 
 # distrobox
 if [[ -x "$(command -v distrobox)" ]]; then
-    alias db="distrobox"
+    db() {
+        env -u PATH "$(which distrobox)" $@
+    }
 fi
 
 # python venv
