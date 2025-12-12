@@ -132,7 +132,7 @@ if [[ -x "$(command -v go)" ]]; then
     GOPATH="$(go env GOPATH)"
     export GOROOT
     export GOPATH
-    export PATH=$PATH:$GOROOT/bin
+    export PATH=$PATH:$GOPATH/bin
     alias gop="GOPROXY=https://goproxy.cn"
 fi
 
