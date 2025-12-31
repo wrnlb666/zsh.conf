@@ -136,6 +136,13 @@ if [[ -x "$(command -v go)" ]]; then
     alias gop="GOPROXY=https://goproxy.cn"
 fi
 
+# fastfetch
+if [[ -x "$(command -v go)" ]]; then
+    neofetch() {
+        fastfetch -c examples/13 $@
+    }
+fi
+
 # tuios
 if [[ -x "$(command -v tuios)" ]]; then
     source <(tuios completion zsh)
