@@ -134,6 +134,13 @@ if exists nvim; then
     alias view="nvim -RM"
 fi
 
+# micro
+if exists micro; then
+    if ! exists nvim; then
+        export EDITOR=micro
+    fi
+fi
+
 # zoxide
 if exists zoxide; then
     source <(zoxide init zsh --cmd z)
