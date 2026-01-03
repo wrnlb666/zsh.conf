@@ -217,3 +217,4 @@ bindkey -v
 bindkey -M viins '^?' backward-delete-char
 bindkey -M viins 'jj' vi-cmd-mode
 bindkey -M viins 'jk' vi-cmd-mode
+bindkey -M vicmd 'v' edit-command-line
