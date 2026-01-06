@@ -3,11 +3,7 @@ typeset -U PATH
 
 # function to test if executable exists in $PATH
 exists() {
-    if [[ "$#" -ne 1 ]]; then
-        echo '[ERRO]: "exists" requires exactly one argument' >&2
-        return 2
-    fi
-    local cmd="$1"
+    local cmd="${1:-cat}"
     if [[ -x "$(command -v "${cmd}")" ]]; then
         return 0
     else
@@ -164,9 +160,7 @@ elif exists fvm; then
     flutter() {
         fvm flutter $@
     }
-    if fvm flutter &> /dev/null; then
-        source <(fvm flutter zsh-completion)
-    fi
+    source <(fvm flutter zsh-completion 2> /dev/null)
 fi
 
 # fastfetch
