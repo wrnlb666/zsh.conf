@@ -17,10 +17,7 @@ if [[ -r ~/.keyrc ]]; then
 fi
 
 # starship
-if exists starship; then
-    if ! [[ -r ~/.config/starship.toml ]]; then
-        starship preset tokyo-night -o ~/.config/starship.toml
-    fi
+if exists starship && [[ -r ~/.config/starship.toml ]]; then
     source <(starship init zsh)
 fi
 
