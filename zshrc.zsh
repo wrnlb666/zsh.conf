@@ -159,13 +159,13 @@ if exists go; then
 fi
 
 # flutter
-if exists flutter; then
-    source <(flutter zsh-completion)
-elif exists fvm; then
+if exists fvm; then
     flutter() {
         fvm flutter $@
     }
     source <(fvm flutter zsh-completion 2> /dev/null)
+elif exists flutter; then
+    source <(flutter zsh-completion)
 fi
 
 # fastfetch
