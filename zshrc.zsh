@@ -59,9 +59,17 @@ venv() {
             dir=$(dirname "$dir")
         done
         echo "Creating Virtual Environment './venv'..."
-        command python3 -m venv venv
+        if exists uv; then
+            command uv venv venv
+        else
+            command python3 -m venv venv
+        fi
     else
-        command python3 -m venv $@
+        if exists uv; then
+            command uv venv "$@"
+        else
+            command python3 -m venv "$@"
+        fi
     fi
 }
 
