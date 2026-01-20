@@ -49,7 +49,7 @@ venv() {
     if [[ $# == 0 ]]; then
         local dir=$(pwd)
         while [[ $dir != '/' ]]; do
-            for v in "venv" ".venv"; do
+            for v in ".venv" "venv"; do
                 if [[ -d "$dir/$v" && -f "$dir/$v/pyvenv.cfg" ]]; then
                     echo "Entering Virtual Environment '$dir/$v'..."
                     source "$dir/$v/bin/activate"
@@ -58,11 +58,11 @@ venv() {
             done
             dir=$(dirname "$dir")
         done
-        echo "Creating Virtual Environment './venv'..."
+        echo "Creating Virtual Environment './.venv'..."
         if exists uv; then
-            command uv venv venv
+            command uv venv .venv
         else
-            command python3 -m venv venv
+            command python3 -m venv .venv
         fi
     else
         if exists uv; then
