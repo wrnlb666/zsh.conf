@@ -40,7 +40,7 @@ fi
 # distrobox
 if exists distrobox; then
     db() {
-        env -u PATH "$(which distrobox)" $@
+        env -u PATH "$(which distrobox)" "$@"
     }
 fi
 
@@ -90,9 +90,11 @@ _setup_conda() {
 }
 _setup_conda
 
-# gomi
+# trash-cli && gomi
 if exists gomi; then
     alias rm="gomi"
+elif exists trash-put; then
+    alias rm="trash-put"
 fi
 
 # man page
@@ -161,7 +163,7 @@ fi
 # flutter
 if exists fvm; then
     flutter() {
-        fvm flutter $@
+        fvm flutter "$@"
     }
     source <(fvm flutter zsh-completion 2> /dev/null)
 elif exists flutter; then
@@ -169,9 +171,9 @@ elif exists flutter; then
 fi
 
 # fastfetch
-if exists go; then
+if exists fastfetch; then
     neofetch() {
-        fastfetch -c examples/13 $@
+        fastfetch -c examples/13 "$@"
     }
 fi
 
