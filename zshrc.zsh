@@ -4,11 +4,7 @@ typeset -U PATH
 # function to test if executable exists in $PATH
 exists() {
     local cmd="${1:-cat}"
-    if [[ -x "$(command -v "${cmd}")" ]]; then
-        return 0
-    else
-        return 1
-    fi
+    [[ -x "$(command -v "${cmd}")" ]]
 }
 
 # keys
@@ -123,10 +119,19 @@ if exists fzf; then
     fi
     if exists bat; then
         fzf() {
-            command fzf-tmux \
-                --preview " \
-                    [[ -f {} ]] && bat --color=always {}; \
-                    [[ -d {} ]] && ls -lhA --color=always {}"
+            local fzf_cmd="fzf"
+            if [[ -n "${TMUX}" ]] && exists fzf-tmux; then
+                fzf_cmd="fzf-tmux"
+            fi
+            if [[ $# -ne 0 ]]; then
+                command "${fzf_cmd}" "$@"
+                return
+            fi
+            command "${fzf_cmd}" \
+                --preview '
+                    [[ -f {} ]] && bat --color=always {};
+                    [[ -d {} ]] && ls -lhA --color=always {}
+                '
         }
     fi
 fi
