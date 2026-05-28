@@ -182,8 +182,8 @@ if exists tuios; then
     source <(tuios completion zsh)
 fi
 
-# superfile
-spf() {
+# _spf_export
+_spf_export() {
     os=$(uname -s)
     # Linux
     if [[ "$os" == "Linux" ]]; then
@@ -193,11 +193,27 @@ spf() {
     if [[ "$os" == "Darwin" ]]; then
         export SPF_LAST_DIR="$HOME/Library/Application Support/superfile/lastdir"
     fi
+}
+_spf_export
+
+# superfile
+spf() {
     command spf "$@"
     [ ! -f "$SPF_LAST_DIR" ] || {
         . "$SPF_LAST_DIR"
         command rm -f -- "$SPF_LAST_DIR" > /dev/null
     }
+}
+
+# tmux-spf
+tmux_spf_popup() {
+    local target="$1"
+    command spf
+    [[ -f "$SPF_LAST_DIR" ]] || return 0
+    local cmd
+    cmd="$(cat "$SPF_LAST_DIR")"
+    rm -f -- "$SPF_LAST_DIR"
+    tmux send-keys -t "$target" -- "builtin $cmd" C-m
 }
 
 # opencode
