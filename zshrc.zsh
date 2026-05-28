@@ -177,11 +177,6 @@ if exists fastfetch; then
     }
 fi
 
-# tuios
-if exists tuios; then
-    source <(tuios completion zsh)
-fi
-
 # _spf_export
 _spf_export() {
     os=$(uname -s)
