@@ -212,7 +212,7 @@ tmux_spf_popup() {
     [[ -f "$SPF_LAST_DIR" ]] || return 0
     local cmd
     cmd="$(cat "$SPF_LAST_DIR")"
-    rm -f -- "$SPF_LAST_DIR"
+    command rm -f -- "$SPF_LAST_DIR"
     tmux send-keys -t "$target" -- "builtin $cmd" C-m
 }
 
