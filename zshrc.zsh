@@ -142,9 +142,16 @@ if exists nvim; then
     alias view="nvim -RM"
 fi
 
+# edit
+if exists edit; then
+    if ! [[ -v EDITOR ]]; then
+        export EDITOR=edit
+    fi
+fi
+
 # micro
 if exists micro; then
-    if ! exists nvim; then
+    if ! [[ -v EDITOR ]]; then
         export EDITOR=micro
     fi
 fi
@@ -163,16 +170,6 @@ if exists go; then
     export GOPATH
     export PATH=$PATH:$GOPATH/bin
     alias gop="GOPROXY=https://goproxy.cn"
-fi
-
-# flutter
-if exists fvm; then
-    flutter() {
-        fvm flutter "$@"
-    }
-    source <(fvm flutter zsh-completion 2> /dev/null)
-elif exists flutter; then
-    source <(flutter zsh-completion)
 fi
 
 # fastfetch
@@ -253,11 +250,6 @@ export PATH=$PATH:~/.cargo/bin
 # gdu
 if [[ -x "$(command -v gdu-go)" ]]; then
     alias gdu="gdu-go"
-fi
-
-# vscode
-if [[ ! -x "$(command -v code)" ]] && flatpak info com.visualstudio.code &> /dev/null; then
-    alias code="flatpak run com.visualstudio.code"
 fi
 
 # mkj
