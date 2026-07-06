@@ -261,7 +261,9 @@ mkj() {
 
 # clear cache
 uncache() {
-    sudo sh -c "echo 3 > /proc/sys/vm/drop_caches"
+    local dc=/proc/sys/vm/drop_caches
+    [[ -e "$dc" ]] || return
+    echo 3 > sudo tee "$dc"
 }
 
 # zsh vi mode
